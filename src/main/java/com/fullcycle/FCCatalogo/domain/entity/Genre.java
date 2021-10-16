@@ -2,23 +2,19 @@ package com.fullcycle.FCCatalogo.domain.entity;
 
 import java.util.UUID;
 
-public class Category extends BaseEntity{
-    
+public class Genre extends BaseEntity{
+
     private String name;
 
-    // public Category() {}
-    
-    public Category(String name) {
-        super.generateUUID();
+    // public Genre() {}
+
+    public Genre(String name) {
+        super.generateUUID(); //na minha opinião deveria ser this ao invés de super
         this.setName(name);
     }
-
-    public Category(UUID id) {
-        super.setId(id);
-    }
-
-    public Category(UUID id, String name) {
-        super.setId(id);
+    
+    public Genre(UUID id, String name) {
+        super.setId(id); //na minha opinião deveria ser this ao invés de super
         this.setName(name);
     }
 
@@ -31,4 +27,5 @@ public class Category extends BaseEntity{
         if (name.length() == 0) throw new IllegalArgumentException("");
         this.name = name;
     }
+
 }
