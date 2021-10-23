@@ -18,6 +18,12 @@ repositories {
 	mavenCentral()
 }
 
+bootRun {
+	if (project.hasProperty('debug')) {
+		jvmArgs = ["-agentlib:jdwp=transport=dt_socket,address=*:8005,server=y,suspend=n"]
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
 	// implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

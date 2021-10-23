@@ -12,8 +12,8 @@ public class BaseEntity {
     }
 
     public void setId(UUID id) {
-        if (id == null) throw new IllegalArgumentException("");
-        if (!this.isValidUUID(id.toString())) throw new IllegalArgumentException("");
+        if (id == null) throw new IllegalArgumentException("id is marked not null but is null");
+        if (!this.isValidUUID(id.toString())) throw new IllegalArgumentException("categories is marked as valid UUID but is not valid UUID");
         this.id = id;
     }
 
@@ -26,7 +26,7 @@ public class BaseEntity {
         if (_id == null) {
             return false;
         }
-        Pattern UUID_REGEX_PATTERN = Pattern.compile("^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-f-A-F{12}[}]?$");
+        Pattern UUID_REGEX_PATTERN = Pattern.compile("^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$");
         return UUID_REGEX_PATTERN.matcher(_id).matches();
     }
 }

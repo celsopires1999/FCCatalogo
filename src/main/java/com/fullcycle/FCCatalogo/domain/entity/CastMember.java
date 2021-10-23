@@ -54,8 +54,8 @@ public class CastMember extends BaseEntity {
         return this.name;
     }
     public void setName(String name) {
-        if (name == null) throw new IllegalArgumentException("");
-        if (name.length() == 0) throw new IllegalArgumentException("");
+        if (name == null) throw new IllegalArgumentException("name is marked not null but is null");
+        if (name.length() == 0) throw new IllegalArgumentException("name is marked not blank but is blank");
         this.name = name;
     }
 
@@ -64,8 +64,8 @@ public class CastMember extends BaseEntity {
     }
 
     public void setType(CastMemberType type) {
-        if (type == null) throw new IllegalArgumentException("");
-        if (!CastMemberType.valueOf(type)) throw new IllegalArgumentException("");
+        if (type == null) throw new IllegalArgumentException("type is marked not null but is null");
+        if (!CastMemberType.valueOf(type)) throw new IllegalArgumentException("type is marked as valid enum but is not valid enum");
         this.type = type;
     }
 }
