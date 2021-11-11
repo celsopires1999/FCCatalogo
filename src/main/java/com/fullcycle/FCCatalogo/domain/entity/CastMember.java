@@ -26,7 +26,7 @@ enum CastMemberType {
     }
 
     public static Boolean valueOf(CastMemberType type) {
-        CastMemberType castMemberType = (CastMemberType) values.get(type);
+        CastMemberType castMemberType = (CastMemberType) values.get(type.type);
         if (castMemberType == null) return false;
         return true;
     }
@@ -39,17 +39,22 @@ public class CastMember extends BaseEntity {
     // public CastMember() {}
 
     public CastMember(UUID id, String name, CastMemberType type) {
-        super.setId(id); // eu usuaria this ao invés de super
+        this.setId(id); 
         this.setName(name);
         this.setType(type);
     }
 
     public CastMember(String name, CastMemberType type) {
-        super.generateUUID(); // eu usuaria this ao invés de super
+        this.generateUUID();
         this.setName(name);
         this.setType(type);
     }
     
+    public CastMember(String name) {
+        this.generateUUID();
+        this.setName(name);
+    }
+
     public String getName() {
         return this.name;
     }

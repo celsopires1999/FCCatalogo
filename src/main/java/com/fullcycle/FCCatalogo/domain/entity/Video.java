@@ -17,6 +17,7 @@ public class Video extends BaseEntity {
     private List<Category> categories = new ArrayList<Category>();
     private List<Genre> genres = new ArrayList<Genre>();
     private List<CastMember> castMembers = new ArrayList<CastMember>();
+    private List<VideoFile> videoFiles = new ArrayList<VideoFile>();
 
     public Video(UUID id, String title, String description, Integer yearLaunched, Boolean opened) {
         super.setId(id);
@@ -50,6 +51,15 @@ public class Video extends BaseEntity {
         this.setDescription(description);
         this.setYearLaunched(yearLaunched);
         this.setDuration(duration);
+    }
+
+    public Video(String title, String description, Integer yearLaunched, Float duration, List<VideoFile> videoFiles) {
+        super.generateUUID();
+        this.setTitle(title);
+        this.setDescription(description);
+        this.setYearLaunched(yearLaunched);
+        this.setDuration(duration);
+        this.setVideoFiles(videoFiles);
     }
 
     public String getTitle() {
@@ -127,9 +137,18 @@ public class Video extends BaseEntity {
         return this.castMembers;
     }
 
-    public void setCastMember(List<CastMember> castMembers) {
+    public void setCastMembers(List<CastMember> castMembers) {
         if (castMembers == null) throw new IllegalArgumentException("castMembers is maked not null but is null");
         this.castMembers = castMembers;
+    }
+
+    public List<VideoFile> getVideoFiles() {
+        return this.videoFiles;
+    }
+
+    public void setVideoFiles(List<VideoFile> files) {
+        if (files == null) throw new IllegalArgumentException("files is marked not null but is null");
+        this.videoFiles = files;
     }
 
     public void addCategory(Category category) {
@@ -160,5 +179,30 @@ public class Video extends BaseEntity {
     public void removeCastMember(CastMember member) {
         if (member == null) throw new IllegalArgumentException("member is maked not null but is null");
         this.castMembers.removeIf(c -> this.castMembers.contains(member));
+    }
+
+    public Video createVideoWithFiles(String title, String description, Integer yearLaunched, Float duration, List<Category> categories, List<Genre> genres, List<CastMember> castMembers, List<VideoFile> videoFiles) {
+        super.generateUUID();
+        this.setTitle(title);
+        this.setDescription(description);
+        this.setYearLaunched(yearLaunched);
+        this.setDuration(duration);
+        this.setCategories(categories);
+        this.setGenres(genres);
+        this.setCastMembers(castMembers);
+        this.setVideoFiles(videoFiles);
+        return this;
+    }
+
+    public Video createVideoWithoutFile(String title, String description, Integer yearLaunched, Float duration, List<Category> categories, List<Genre> genres, List<CastMember> castMembers) {
+        super.generateUUID();
+        this.setTitle(title);
+        this.setDescription(description);
+        this.setYearLaunched(yearLaunched);
+        this.setDuration(duration);
+        this.setCategories(categories);
+        this.setGenres(genres);
+        this.setCastMembers(castMembers);
+        return this;
     }
 }

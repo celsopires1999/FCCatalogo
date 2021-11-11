@@ -16,7 +16,7 @@ public class FcCatalogoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Genre genre = new Genre("Genre 1");
-		Category category = new Category("Category 12");
+		Category category = new Category("Category 123");
 		genre.addCategory(category);
 		System.out.println("Genre name: " + genre.getName() + " Id: " + genre.getId() + " Categories: " + genre.getCategories());
 		genre.removeCategory(category);
