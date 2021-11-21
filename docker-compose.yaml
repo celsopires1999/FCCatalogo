@@ -1,5 +1,29 @@
 version: '3.7'
 services:
+  mysqldb:
+    container_name: micro-videos-mysqldbv2
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=fc_catalogo_dev
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - 3307:3306
+    networks:
+      - fc_network
+
+  adminer:
+    container_name: micro-videos-adminerv2
+    image: adminer:latest
+    restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - fc_network
+    depends_on:
+      - mysqldb
+
   app:
     container_name: micro-videos-appv2
     build:
@@ -12,4 +36,10 @@ services:
     ports:
       - 8080:8080
       - 8005:8005
+    networks:
+      - fc_network
+    depends_on:
+      - mysqldb
       
+networks:
+  fc_network:
