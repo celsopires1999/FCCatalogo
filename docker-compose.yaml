@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  mysqldb:
+  fc_mysqldb:
     container_name: micro-videos-mysqldbv2
     image: mysql:latest
     environment:
@@ -22,7 +22,7 @@ services:
     networks:
       - fc_network
     depends_on:
-      - mysqldb
+      - fc_mysqldb
 
   app:
     container_name: micro-videos-appv2
@@ -39,7 +39,7 @@ services:
     networks:
       - fc_network
     depends_on:
-      - mysqldb
+      - fc_mysqldb
       
 networks:
   fc_network:
