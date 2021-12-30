@@ -1,12 +1,19 @@
 package com.fullcycle.FCCatalogo.domain.entity;
-
 import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import lombok.EqualsAndHashCode;
 
+@Entity
+@Table(name = "categories")
+@EqualsAndHashCode
 public class Category extends BaseEntity{
     
+    @Column
     private String name;
 
-    // public Category() {}
+    private Category() {}
     
     public Category(String name) {
         super.generateUUID();
@@ -27,8 +34,8 @@ public class Category extends BaseEntity{
     }
 
     public void setName(String name) {
-        if (name == null) throw new IllegalArgumentException("");
-        if (name.length() == 0) throw new IllegalArgumentException("");
+        if (name == null) throw new IllegalArgumentException("name is marked not null but is null");
+        if (name.length() == 0) throw new IllegalArgumentException("name is marked not blank but is blank");
         this.name = name;
     }
 }

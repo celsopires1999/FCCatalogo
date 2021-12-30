@@ -18,9 +18,15 @@ repositories {
 	mavenCentral()
 }
 
+bootRun {
+	if (project.hasProperty('debug')) {
+		jvmArgs = ["-agentlib:jdwp=transport=dt_socket,address=*:8005,server=y,suspend=n"]
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
-	// implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.github.dozermapper:dozer-core:6.5.2'
 	compileOnly 'org.projectlombok:lombok'

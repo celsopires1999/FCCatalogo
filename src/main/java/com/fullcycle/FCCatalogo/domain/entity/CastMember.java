@@ -26,7 +26,7 @@ enum CastMemberType {
     }
 
     public static Boolean valueOf(CastMemberType type) {
-        CastMemberType castMemberType = (CastMemberType) values.get(type);
+        CastMemberType castMemberType = (CastMemberType) values.get(type.type);
         if (castMemberType == null) return false;
         return true;
     }
@@ -39,23 +39,28 @@ public class CastMember extends BaseEntity {
     // public CastMember() {}
 
     public CastMember(UUID id, String name, CastMemberType type) {
-        super.setId(id); // eu usuaria this ao invés de super
+        this.setId(id); 
         this.setName(name);
         this.setType(type);
     }
 
     public CastMember(String name, CastMemberType type) {
-        super.generateUUID(); // eu usuaria this ao invés de super
+        this.generateUUID();
         this.setName(name);
         this.setType(type);
     }
     
+    public CastMember(String name) {
+        this.generateUUID();
+        this.setName(name);
+    }
+
     public String getName() {
         return this.name;
     }
     public void setName(String name) {
-        if (name == null) throw new IllegalArgumentException("");
-        if (name.length() == 0) throw new IllegalArgumentException("");
+        if (name == null) throw new IllegalArgumentException("name is marked not null but is null");
+        if (name.length() == 0) throw new IllegalArgumentException("name is marked not blank but is blank");
         this.name = name;
     }
 
@@ -64,8 +69,8 @@ public class CastMember extends BaseEntity {
     }
 
     public void setType(CastMemberType type) {
-        if (type == null) throw new IllegalArgumentException("");
-        if (!CastMemberType.valueOf(type)) throw new IllegalArgumentException("");
+        if (type == null) throw new IllegalArgumentException("type is marked not null but is null");
+        if (!CastMemberType.valueOf(type)) throw new IllegalArgumentException("type is marked as valid enum but is not valid enum");
         this.type = type;
     }
 }

@@ -9,5 +9,4 @@ public class FcCatalogoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FcCatalogoApplication.class, args);
 	}
-
 }
