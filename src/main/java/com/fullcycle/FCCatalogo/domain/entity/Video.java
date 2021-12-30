@@ -45,6 +45,19 @@ public class Video extends BaseEntity {
         this.setDuration(duration);
     }
 
+    public Video(String title, String description, Integer yearLaunched, Boolean opened, String rating, Float duration, List<Category> categories, List<Genre> genres, List<CastMember> castMembers) {
+        super.generateUUID();
+        this.setTitle(title);
+        this.setDescription(description);
+        this.setYearLaunched(yearLaunched);
+        this.setOpened(opened);
+        this.setRating(rating);
+        this.setDuration(duration);
+        this.setCategories(categories);
+        this.setGenres(genres);
+        this.setCastMembers(castMembers);
+    }
+
     public Video(String title, String description, Integer yearLaunched, Float duration) {
         super.generateUUID();
         this.setTitle(title);
@@ -85,8 +98,12 @@ public class Video extends BaseEntity {
     }
 
     public void setYearLaunched(Integer yearLaunched) {
+        if (yearLaunched == null) throw new IllegalArgumentException("yearLaunched is marked not null but is null");
+        if (yearLaunched <= 1700) throw new IllegalArgumentException("yearLaunched must be greater than 1700");
+        
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         if (yearLaunched > currentYear) throw new IllegalArgumentException("yearLauched is greather than current year");
+        
         this.yearLaunched = yearLaunched;
     }
 
@@ -120,7 +137,7 @@ public class Video extends BaseEntity {
     }
 
     public void setCategories(List<Category> categories) {
-        if (categories == null) throw new IllegalArgumentException("categories is maked not null but is null");
+        if (categories == null) throw new IllegalArgumentException("categories is marked not null but is null");
         this.categories = categories;
     }
 
@@ -129,7 +146,7 @@ public class Video extends BaseEntity {
     }
 
     public void setGenres(List<Genre> genres) {
-        if (genres == null) throw new IllegalArgumentException("genres is maked not null but is null");
+        if (genres == null) throw new IllegalArgumentException("genres is marked not null but is null");
         this.genres = genres;
     }
 
@@ -138,7 +155,7 @@ public class Video extends BaseEntity {
     }
 
     public void setCastMembers(List<CastMember> castMembers) {
-        if (castMembers == null) throw new IllegalArgumentException("castMembers is maked not null but is null");
+        if (castMembers == null) throw new IllegalArgumentException("castMembers is marked not null but is null");
         this.castMembers = castMembers;
     }
 
@@ -152,32 +169,32 @@ public class Video extends BaseEntity {
     }
 
     public void addCategory(Category category) {
-        if (category == null) throw new IllegalArgumentException("category is maked not null but is null");
+        if (category == null) throw new IllegalArgumentException("category is marked not null but is null");
         this.categories.add(category);
     }
 
     public void removeCategory(Category category) {
-        if (category == null) throw new IllegalArgumentException("category is maked not null but is null");
+        if (category == null) throw new IllegalArgumentException("category is marked not null but is null");
         this.categories.removeIf(c -> this.categories.contains(category));
     }
 
     public void addGenre(Genre genre) {
-        if (genre == null) throw new IllegalArgumentException("genre is maked not null but is null");
+        if (genre == null) throw new IllegalArgumentException("genre is marked not null but is null");
         this.genres.add(genre);
     }
 
     public void removeGenre(Genre genre) {
-        if (genre == null) throw new IllegalArgumentException("genre is maked not null but is null");
+        if (genre == null) throw new IllegalArgumentException("genre is marked not null but is null");
         this.genres.removeIf(c -> this.genres.contains(genre));
     }
 
     public void addCastMember(CastMember member) {
-        if (member == null) throw new IllegalArgumentException("member is maked not null but is null");
+        if (member == null) throw new IllegalArgumentException("member is marked not null but is null");
         this.castMembers.add(member);
     }
 
     public void removeCastMember(CastMember member) {
-        if (member == null) throw new IllegalArgumentException("member is maked not null but is null");
+        if (member == null) throw new IllegalArgumentException("member is marked not null but is null");        
         this.castMembers.removeIf(c -> this.castMembers.contains(member));
     }
 
